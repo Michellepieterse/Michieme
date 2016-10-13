@@ -1,7 +1,10 @@
-  // onSuccess Callback
-    // This method accepts a Position object, which contains the
-    // current GPS coordinates
-    //
+ function onDeviceReady() {
+  document.getElementByID('findMe').addEventListener("click", function() {
+    navigator.geolocation.getCurrentPosition(onSuccess, onError, { timeout: 30000, enableHighAccuracy: true});
+  }, false);
+  };
+ 
+ document.addEventListener("deviceready", onDeviceReady, false);
     var onSuccess = function(position) {
         alert('Latitude: '          + position.coords.latitude          + '\n' +
               'Longitude: '         + position.coords.longitude         + '\n' +
@@ -21,10 +24,3 @@
     }
 
     navigator.geolocation.getCurrentPosition(onSuccess, onError);
-
- var funcName = function() {
-    navigator.geolocation.getCurrentPosition(onSuccess, onError);
- };
-
- var el = document.getElementByTagName('input')[0];
-          el.addEventListener('click', funcName, false);
